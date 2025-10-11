@@ -1,31 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kapp-v1
+  name: argo-app-deployment
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: kapp-v1
+      app: argo-app
+  replicas: 1
   template:
     metadata:
       labels:
-        app: kapp-v1
+        app: argo-app
     spec:
       containers:
-        - name: kapp
-          image: wil42/playground:v1
-          ports:
-            - containerPort: 8888
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8888
-            initialDelaySeconds: 5
-            periodSeconds: 5
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 8888
-            initialDelaySeconds: 10
-            periodSeconds: 10
+      - name: argo-app
+        image: wil42/playground:v1
+        ports:
+        - containerPort: 8888
