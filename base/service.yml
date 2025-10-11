@@ -3,11 +3,10 @@ kind: Service
 metadata:
   name: argo-app-service
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: argo-app
   ports:
     - port: 8080
       protocol: TCP
       targetPort: 8888
-      nodePort: 30080
